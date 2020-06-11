@@ -1,0 +1,109 @@
+type Analytics {
+    data: Data
+    settings: Settings
+    results: Results
+}
+
+type Data {
+    code: String
+    unit: Int
+    description: String
+    dos: String
+    applyGAF: Int
+    startYear: Int
+    endYear: Int
+    providerType: String
+    placeOfService: String
+}
+
+type Settings {
+    minInflationyear: Int
+    maxInflationyear: Int
+    typeRequest: String
+    typeClaim: String
+    typeReport: String
+    state: String
+    latitude: Float
+    longitude: Float
+    distance: Int
+    radius: Int
+    percentile: Int
+    gaf: Float
+    minPatient: Int
+    multiplier: Float
+    billDatabase: String
+    providerType: String
+    placeOfService: String
+    typeMedicalClaim: String
+    billType: String
+    billRepeated: Int
+    code: String
+    unit: Int
+    applyGAF: Int
+    startYear: Int
+    endYear: Int
+}
+
+type Results {
+    query: String
+    applyGAF: Int
+    data: ResultsData
+}
+
+type ResultsData {
+    radius: String
+    totalProvider: Int
+    totalPatient: Int
+    percentileCharge: Float
+    percentileChargeWithGAF: Float
+    percentileChargeWithInflation: Float
+    percentileChargeWithInflationAndGAF: Float
+    gafCharge: Float
+    totalCharge: Float
+    totalChargePerUnit: Float
+    applyMultiProcedureDiscount: Int
+    data: [Provider]
+}
+
+type Provider {
+    providerID: String
+    providerName: String
+    placeOfService: String
+    credentials: String
+    totalPatient: Int
+    totalProvider: Int
+    distance: Float
+    charge: Float
+    city: String
+    state: String
+    providerType: String
+}
+
+input InputSettings {
+    requesttype: Int!
+    claimtype: Int!
+    address: String!
+    state: String!
+    latitude: Float!
+    longitude: Float!
+    percentile: Int!
+    distance: Float!
+    gaf: Float!
+    typeMedicalClaim: String!
+    providerGroup: String!
+    listDatabaseID: Int!
+    providerType: Int!
+    placeOfService: String!
+    billType: String!
+}
+
+input Code {
+    code: String!
+    unit: Int!
+    description: String!
+    dos: String
+}
+
+type Query {
+    analyze(code: Code, settings: InputSettings): Analytics!
+}
