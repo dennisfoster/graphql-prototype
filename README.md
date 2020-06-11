@@ -7,4 +7,5 @@ To run the server: go run server.go (will launch Web-server on localhost:8080)
 # Structure
 
 /graphql-prototype/graph/schema.graphqls - Main Schema
+
 /graphql-prototype/graph/schema.resolvers.go - Resolver functions
